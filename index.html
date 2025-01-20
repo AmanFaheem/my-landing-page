@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palette Makeup</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+
+        /* Header Styling */
+        header {
+            background: #000;
+            padding: 15px 20px;
+        }
+
+        /* Navbar Flexbox */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #000;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease-in-out;
+        }
+
+        /* Logo Styling */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            color: #ff6600;
+            /* Change color on hover */
+            transform: scale(1.1);
+            /* Slight zoom effect */
+        }
+
+
+        /* Navbar Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        /* Hover Effect */
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: #ff6600;
+            /* Change to orange on hover */
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background: #ff6600;
+            /* Underline effect */
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: url('https://images.unsplash.com/photo-1533562389935-457b1ae48a39?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            animation: slideBackground 20s infinite;
+            transition: background-image 1s ease-in-out;
+        }
+
+        /* Keyframes for the sliding effect */
+        @keyframes slideBackground {
+            0% {
+                background-image: url('https://images.unsplash.com/photo-1583241800882-d0087e27c920?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            }
+
+            25% {
+                background-image: url('https://images.unsplash.com/photo-1583241800967-3b926edea1f2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            }
+
+            50% {
+                background-image: url('https://images.unsplash.com/photo-1583241800944-b168e3baae27?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            }
+
+            75% {
+                background-image: url('https://images.unsplash.com/photo-1630084775816-7abb7383ded5?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            }
+
+            100% {
+                background-image: url('https://plus.unsplash.com/premium_photo-1679750866924-2097e68ed7f8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            }
+        }
+
+
+
+        .hero .text {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            /* Yeh line add karo */
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 20px;
+        }
+
+        .product1 {
+            width: 250px;
+            /* Equal width */
+            height: 300px;
+            /* Equal height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-image: url('https://images.unsplash.com/photo-1679623100266-db82be84f5f3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        .product1 {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .product1:hover {
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .product1::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            /* Light black overlay */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product1:hover::before {
+            opacity: 1;
+            /* Overlay appears on hover */
+        }
+
+        .product1::after {
+            content: "View More";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #000;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product1:hover::after {
+            opacity: 1;
+            /* "View More" text appears */
+        }
+
+
+        .product2 {
+            width: 250px;
+            /* Equal width */
+            height: 300px;
+            /* Equal height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-image: url('https://media.istockphoto.com/id/1253649811/photo/top-view-of-lipstick-cosmetic-brushes-and-blush-near-eye-shadow-palette-on-pink.jpg?s=1024x1024&w=is&k=20&c=D_9AZirbBVQ6ny13efE7dWw2co_uh2LmdGtCqYmpkqw=');
+        }
+
+        .product2 {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .product2:hover {
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .product2::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            /* Light black overlay */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product2:hover::before {
+            opacity: 1;
+            /* Overlay appears on hover */
+        }
+
+        .product2::after {
+            content: "View More";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #000;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product2:hover::after {
+            opacity: 1;
+            /* "View More" text appears */
+        }
+
+
+        .product3 {
+            width: 250px;
+            /* Equal width */
+            height: 300px;
+            /* Equal height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-image: url('https://images.unsplash.com/photo-1522336572468-97b06e8ef143');
+        }
+
+        .product3 {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .product3:hover {
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .product3::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            /* Light black overlay */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product3:hover::before {
+            opacity: 1;
+            /* Overlay appears on hover */
+        }
+
+        .product3::after {
+            content: "View More";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #000;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product3:hover::after {
+            opacity: 1;
+            /* "View More" text appears */
+        }
+
+
+
+
+        .product4 {
+            width: 250px;
+            /* Equal width */
+            height: 300px;
+            /* Equal height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-image: url('https://images.unsplash.com/photo-1631120629198-777872b283f1?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        .product4 {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .product4:hover {
+            transform: scale(1.05);
+            /* Slight zoom effect */
+        }
+
+        .product4::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            /* Light black overlay */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product4:hover::before {
+            opacity: 1;
+            /* Overlay appears on hover */
+        }
+
+        .product4::after {
+            content: "View More";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #000;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .product4:hover::after {
+            opacity: 1;
+            /* "View More" text appears */
+        }
+
+        /* New row for additional 4 products */
+        .product5,
+        .product6,
+        .product7,
+        .product8 {
+            width: 250px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.3s ease-in-out;
+        }
+
+        /* Default Images */
+        .product5 {
+            background-image: url('https://images.pexels.com/photos/3762874/pexels-photo-3762874.jpeg');
+        }
+
+        .product6 {
+            background-image: url('https://images.pexels.com/photos/3373735/pexels-photo-3373735.jpeg');
+        }
+
+        .product7 {
+            background-image: url('https://images.pexels.com/photos/20179099/pexels-photo-20179099/free-photo-of-woman-holding-a-red-lipstick.jpeg');
+        }
+
+        .product8 {
+            background-image: url('https://images.pexels.com/photos/17311940/pexels-photo-17311940/free-photo-of-makeup-products-arrangement.jpeg');
+        }
+
+        /* Image Changes on Hover or Touch */
+        .product5:hover,
+        .product5:active {
+            background-image: url('https://images.pexels.com/photos/3762872/pexels-photo-3762872.jpeg');
+        }
+
+        .product6:hover,
+        .product6:active {
+            background-image: url('https://images.pexels.com/photos/20179097/pexels-photo-20179097/free-photo-of-makeup-brushes-and-lipstick-on-a-white-surface.jpeg');
+        }
+
+        .product7:hover,
+        .product7:active {
+            background-image: url('https://images.pexels.com/photos/16194843/pexels-photo-16194843/free-photo-of-woman-applying-mascara.jpeg');
+        }
+
+        .product8:hover,
+        .product8:active {
+            background-image: url('https://images.pexels.com/photos/17210164/pexels-photo-17210164/free-photo-of-red-and-gold-makeup-products.jpeg');
+        }
+
+
+
+
+
+        .product img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 5px;
+        }
+
+        .product h2 {
+            margin-top: 15px;
+            font-size: 18px;
+            color: black;
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                flex-direction: column;
+                align-items: center;
+                color: #000;
+            }
+
+            .hero {
+                height: 60vh;
+            }
+        }
+
+        .article-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 50px 20px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .article-content {
+            width: 60%;
+            padding-right: 20px;
+        }
+
+        .article-content h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+
+        }
+
+        .article-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            font-family: "Dancing Script", serif;
+            font-optical-sizing: auto;
+            font-weight: weight;
+            font-style: normal;
+        }
+
+        /* Image Section */
+        .article-image {
+            width: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-image img {
+            width: 100%;
+            transition: transform 0.5s ease, filter 0.5s ease;
+            border-radius: 10px;
+        }
+
+        /* Hover Effect on Image */
+        .article-image:hover img {
+            transform: scale(1.1);
+            /* Slight zoom on hover */
+            filter: brightness(80%);
+            /* Dim effect */
+        }
+
+        /* Overlay Effect */
+        .article-image::after {
+            content: "Explore Beauty";
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .article-image:hover::after {
+            opacity: 1;
+            /* Text appears on hover */
+        }
+
+        .video-article-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 50px 20px;
+            gap: 20px;
+        }
+
+        /* Video Container (Left) */
+        .video-container {
+            flex: 1;
+            /* Video takes 50% width */
+            max-width: 600px;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Article Container (Right) */
+        .article-container {
+            flex: 1;
+            /* Article takes 50% width */
+            max-width: 600px;
+        }
+
+        .article-container h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .article-container p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            font-family: "Dancing Script", serif;
+            font-optical-sizing: auto;
+            font-weight: weight;
+            font-style: normal;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .video-article-section {
+                flex-direction: column;
+                /* Stack video and article */
+            }
+
+            .video-container,
+            .article-container {
+                max-width: 100%;
+            }
+
+            .video-container video {
+                height: 300px;
+                /* Set fixed height for smaller screens */
+
+            }
+
+        }
+
+        /* General Footer Style */
+        /* General Footer Style */
+        .footer {
+            background: linear-gradient(135deg, #ff6600, #ff3366);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        /* Footer Content */
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            transform: translateY(10px);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        /* Fade-in Effect for Footer */
+        @keyframes fadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            font-size: 16px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #000;
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            transform: translateY(-5px);
+        }
+
+        /* Footer Social Icons */
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social .social-icon {
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-social .social-icon:hover {
+            color: #ff3366;
+            transform: scale(1.2);
+        }
+
+        /* Footer Bottom Section */
+        .footer-bottom {
+            margin-top: 30px;
+            border-top: 2px solid #ffffff;
+            padding-top: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+            font-weight: 400;
+            animation: fadeUp 2s ease forwards;
+        }
+
+        /* Fade-Up Animation for Footer Bottom */
+        @keyframes fadeUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+
+        /* Hover Effect for Social Icons */
+        .social-icon:hover {
+            color: #ff3366;
+            transform: translateY(-5px);
+            /* subtle lift effect */
+        }
+
+        /* Gradient Effect on Hover for Links */
+        .footer-links a:hover {
+            background-color: #ff3366;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+
+        /* Animated Border on Hover */
+        .footer-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background: #ff6600;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .footer-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Hover Effect for Footer Links */
+        .footer-links a:hover {
+            color: #ff6600;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Zeba Faishon</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <!-- <div class="text">Fan Fave Lippies in New, Super Rich Colors</div> -->
+    </section>
+
+    <section class="products">
+        <div class="product1">
+            <h2>FACE MAKEUP</h2>
+        </div>
+        <div class="product2">
+            <h2>EYE MAKEUP</h2>
+        </div>
+        <div class="product3">
+            <h2>FACE MAKEUP</h2>
+        </div>
+        <div class="product4">
+            <h2>EYE MAKEUP</h2>
+        </div>
+
+        <!-- New Row of Products Below -->
+        <div class="product5">
+            <h2>LIP MAKEUP</h2>
+        </div>
+        <div class="product6">
+            <h2>NAIL ART</h2>
+        </div>
+        <div class="product7">
+            <h2>SKINCARE</h2>
+        </div>
+        <div class="product8">
+            <h2>HAIR CARE</h2>
+        </div>
+    </section>
+
+    <section class="article-section">
+        <div class="article-content">
+            <h2>The Secret to Flawless Makeup</h2>
+            <p>
+                Achieving the perfect look starts with the right products. From hydrating skincare to vibrant lipsticks,
+                every step matters. Discover our top picks and transform your daily makeup routine!
+            </p>
+            <p>
+                Our exclusive collections bring the best of beauty, blending style with quality. Explore our range now
+                and
+                take your beauty game to the next level.
+            </p>
+        </div>
+        <div class="article-image">
+            <img src="https://plus.unsplash.com/premium_photo-1664391794792-391877ea9eea?q=80&w=1481&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Makeup Products">
+        </div>
+    </section>
+    <section class="video-article-section">
+        <!-- Left Side Video -->
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Right Side Article -->
+        <div class="article-container">
+            <h2>The Secret to Flawless Makeup</h2>
+            <p>
+                Achieving the perfect look starts with the right products. From hydrating skincare to vibrant lipsticks,
+                every step matters. Discover our top picks and transform your daily makeup routine!
+            </p>
+            <p>
+                Our exclusive collections bring the best of beauty, blending style with quality. Explore our range now
+                and
+                take your beauty game to the next level.
+            </p>
+        </div>
+    </section>
+    <!-- footer section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zeba Fashion Corner. All Rights Reserved.</p>
+            <p class="footer-address">274/11 N.L.C Kidwai Nagar Kanpur</p>
+        </div>
+    </footer>
+
+    <script defer src="script.js"></script>
+
+
+
+</body>
+
+</html>
